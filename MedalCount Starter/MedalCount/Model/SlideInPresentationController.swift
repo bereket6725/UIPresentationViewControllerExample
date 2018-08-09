@@ -16,7 +16,6 @@ class SlideInPresentationController: UIPresentationController {
   //Represents to direction of presention
   private var direction: PresentationDirection
   fileprivate var dimmingView: UIView!
-
   //OPTIONAL DELEGATE METHOD
   override func presentationTransitionWillBegin() {
     //UIPresentationController has a property called "containerView"
@@ -46,8 +45,13 @@ class SlideInPresentationController: UIPresentationController {
     coordinator.animate(alongsideTransition: { _ in
       self.dimmingView.alpha = 0.0
     })
-    
   }
+  //OPTIONAL DELEGATE METHOD
+  //we reset the frame of the presentedView to fit any changes in the container view's frame
+  override func containerViewWillLayoutSubviews() {
+    presentedView?.frame = frameOfPresentedViewInContainerView
+  }
+  
 //2.
 //takes in the "presented" and the "presenting view" viewController, including the presentation direction
   init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?, direction: PresentationDirection) {
@@ -57,9 +61,6 @@ class SlideInPresentationController: UIPresentationController {
     super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
     setUpDimmingView()
   }
-  
-  
-  
 }
 // MARK: - Private
 //sets up our dimmingView
