@@ -35,6 +35,7 @@ extension SlideInPresentationAnimator: UIViewControllerAnimatedTransitioning {
   //3. Calculate the frames you are animating 'from' and 'to'
   //   the first line in part 3 asks the transitionContext for the views frame when its presented. The rest calculates its frame when its dismissed. This section sets the frames origin so its just outside the visible area based on the frames direction
   //4. Determines the transitiona inital and final frames. When presenting the viewController it from the dimissed to the presented frames and vice-versa for when its dismissing
+  //5. animates view from initial to final frame. Calls 'completeTransition(_:)' on transtion context to show its finished
   func animateTransition(using transitionContext: UIViewControllerContextTransitioning){
     //1.
     let key = isPresentation ? UITransitionContextViewControllerKey.to : UITransitionContextViewControllerKey.from
