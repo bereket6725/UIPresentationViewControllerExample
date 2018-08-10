@@ -52,6 +52,20 @@ class SlideInPresentationController: UIPresentationController {
     presentedView?.frame = frameOfPresentedViewInContainerView
   }
   
+  //this gives the presented viewControllers content to the presentation Ccntroller
+  //method recieves: 1. content container and 2. the parents view size. Then uses the two
+  //to calculate the size of the presented content
+  //In this case we make the presented view 2/3rds the size of the screen by returning
+  //(2.0/3.0) for the width of the horizontal and (2.0/3.0) the height for the vertical presentations
+  override func size(forChildContentContainer container: UIContentContainer, withParentContainerSize parentSize: CGSize) -> CGSize {
+    switch direction {
+    case .left, .right:
+      return CGSize(width: parentSize.width*(2.0/3.0), height: parentSize.height)
+    case .bottom, .top:
+      return CGSize(width: parentSize.width, height: parentSize.height*(2.0/3.0))
+    }
+  }
+  
 //2.
 //takes in the "presented" and the "presenting view" viewController, including the presentation direction
   init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?, direction: PresentationDirection) {
