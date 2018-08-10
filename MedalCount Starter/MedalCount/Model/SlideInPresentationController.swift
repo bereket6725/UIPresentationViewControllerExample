@@ -40,8 +40,8 @@ class SlideInPresentationController: UIPresentationController {
     //the line below inserts our dimmingView to the back of the hierarchy
     containerView?.insertSubview(dimmingView, at: 0)
     //below, we constrain the dimmingView to the edges of the containerView so it fills the entire screen
-    NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V: |[dimmingView]", options: [], metrics: nil, views: ["dimmingView":dimmingView]))
-    NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H: |[dimmingView]", options: [], metrics: nil, views: ["dimmingView":dimmingView]))
+    NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:|[dimmingView]|", options: [], metrics: nil, views: ["dimmingView":dimmingView]))
+    NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|[dimmingView]|", options: [], metrics: nil, views: ["dimmingView":dimmingView]))
     //create our transtionCoordinator to handle the transition
     guard let coordinator = presentedViewController.transitionCoordinator else {
       dimmingView.alpha = 1.0
