@@ -30,7 +30,7 @@ class SlideInPresentationController: UIPresentationController {
   }
   //1.
   // MARK: - Properties
-  //Represents to direction of presention
+  //Represents the direction of presention
   private var direction: PresentationDirection
   fileprivate var dimmingView: UIView!
   //OPTIONAL DELEGATE METHOD
