@@ -24,6 +24,10 @@ class SlideInPresentationManager: NSObject {
 //responisible for laoding the UIPresentationController and the presentation/dismissal of animation controllers
 //Always must conform to the UIViewControllerTransitionDelegate
 extension SlideInPresentationManager: UIViewControllerTransitioningDelegate {
-  
+//here we instantiate a SlideInPresentationController with a direction from a SlideInPresentationManager and return it to use for the presentation
+  func presentController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController)-> UIPresentationController {
+    let presentationController = SlideInPresentationController(presentedViewController: presented, presenting: presenting, direction: direction)
+    return presentationController
+  }
   
 }
