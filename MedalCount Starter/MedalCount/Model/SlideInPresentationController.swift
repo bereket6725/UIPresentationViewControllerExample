@@ -11,6 +11,23 @@ import Foundation
 
 
 class SlideInPresentationController: UIPresentationController {
+    //overriding the property that returns the frame of the presented viewController in our UIPresentationViewController subclass
+    //size of frame is calculated in the " size(forChildContentContainer:..)" function.
+    //for the right and bottom directions we adjust the origin by
+    // moving the x (the right) and y (the bottom) origin to1/3rd the width or height
+  override var frameOfPresentedViewInContainerView: CGRect {
+    var frame: CGRect = .zero
+    frame.size = size(forChildContentContainer: presentedViewController, withParentContainerSize: containerView!.bounds.size)
+    switch direction {
+      case .right:
+        frame.origin.x = containerView!.frame.width*(1.0/3.0)
+      case .bottom:
+        frame.origin.y = containerView!.frame.height*(1.0/3.0)
+      default:
+        frame.origin = .zero
+    }
+    return frame
+  }
   //1.
   // MARK: - Properties
   //Represents to direction of presention
@@ -65,7 +82,7 @@ class SlideInPresentationController: UIPresentationController {
       return CGSize(width: parentSize.width, height: parentSize.height*(2.0/3.0))
     }
   }
-  
+
 //2.
 //takes in the "presented" and the "presenting view" viewController, including the presentation direction
   init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?, direction: PresentationDirection) {
